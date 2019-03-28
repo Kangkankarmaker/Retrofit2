@@ -37,7 +37,7 @@ public class StudentDetails extends AppCompatActivity {
     public static final String BASE_URL = "https://untearable-trays.000webhostapp.com";
     private update service;
 
-     delete de_service;
+    private delete de_service;
      ImageView imageView;
 
     String photoString;
@@ -86,6 +86,7 @@ public class StudentDetails extends AppCompatActivity {
         });
     }
 
+
     private void updatedata(String i, String aname) {
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -112,13 +113,13 @@ public class StudentDetails extends AppCompatActivity {
     }
 
     private void deletedata(String u_id) {
- 
+
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         de_service = retrofit.create(delete.class);
-
         Call<StudentResponse> call =de_service.delete_user(u_id);
         call.enqueue(new Callback<StudentResponse>() {
             @Override
@@ -129,10 +130,10 @@ public class StudentDetails extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<StudentResponse> call, Throwable t) {
-                // Toast.makeText(StudentDetails.this, "No internet connection", Toast.LENGTH_LONG).show();
                 Toast.makeText(StudentDetails.this,t.getMessage()+"",Toast.LENGTH_LONG).show();
             }
         });
+
 
     }
 }
